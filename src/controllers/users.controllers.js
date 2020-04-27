@@ -12,8 +12,8 @@ usersController.getUser = async (req, res) => {
 };
 
 usersController.createUser = async (req, res) => {
-    const { name, email } = req.body;
-    const newUser = User({ name, email });
+    const { name, email, password } = req.body;
+    const newUser = User({ name, email, password });
     await newUser.save();
 
     res.json({
@@ -30,6 +30,16 @@ usersController.updateUser = async (req, res) => {
 usersController.deleteUser = async (req, res) => {
     await User.findOneAndDelete({ _id: req.params.id });
     res.json({ message: "user deleted" });
+};
+
+usersController.login = async (req, res) => {
+    let { email, password } = req.body;
+    let response = await User.findOne({ email, password });
+    if (response) {
+        res.json({ response: "valid_user" });
+    } else {
+        res.json({ response: "invalid_user" });
+    }
 };
 
 module.exports = usersController;
