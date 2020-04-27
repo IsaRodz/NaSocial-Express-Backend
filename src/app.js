@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use("/api/users", require("./routes/users"));
-app.use("/api/notes", require("./routes/notes"));
 app.use("/api/posts", require("./routes/posts"));
 
 module.exports = app;
