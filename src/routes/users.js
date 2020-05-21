@@ -3,14 +3,13 @@ const router = Router();
 
 const {
     createUser,
-    getUsers,
     getUser,
     updateUser,
     deleteUser,
     login,
 } = require("../controllers/users.controllers");
 
-router.route("/").get(getUsers).post(createUser);
+router.route("/").post(createUser);
 
 router.route("/:id").get(getUser).put(updateUser).delete(deleteUser);
 

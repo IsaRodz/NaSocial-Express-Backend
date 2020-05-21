@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 
+const verifyToken = require("../helpers/verifyToken");
+
 const {
     getPost,
     getPosts,
@@ -9,8 +11,12 @@ const {
     createPost,
 } = require("../controllers/posts.controller");
 
-router.route("/").get(getPosts).post(createPost);
+router.route("/").get(verifyToken, getPosts).post(verifyToken, createPost);
 
-router.route("/:id").get(getPost).put(updatePost).delete(deletePost);
+router
+    .route("/:id")
+    .get(verifyToken, getPost)
+    .put(verifyToken, updatePost)
+    .delete(verifyToken, deletePost);
 
 module.exports = router;

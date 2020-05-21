@@ -7,6 +7,7 @@ const postsSchema = new Schema(
             required: true,
         },
         author: String,
+        likes: Number,
     },
     {
         timestamps: true,
