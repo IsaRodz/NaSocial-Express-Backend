@@ -11,7 +11,7 @@ const {
     createPost,
 } = require("../controllers/posts.controller");
 
-router.route("/").get(verifyToken, getPosts).post(verifyToken, createPost);
+router.route("/").get(verifyToken, getPosts).post(createPost);
 
 router
     .route("/:id")
